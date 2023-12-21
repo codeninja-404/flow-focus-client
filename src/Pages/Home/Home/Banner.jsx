@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import HeroImage from "../../../assets/hero.jpg";
 const Banner = () => {
   return (
@@ -20,11 +20,18 @@ const Banner = () => {
         sx={{
           width: { xs: "100%", sm: "100%", md: "100%" },
           height: { xs: "70%", sm: "70%", md: "70%" },
-          margin: { xs: 5, sm: 10, md: 20 },
+          margin: { xs: 5, sm: 10, md: 15 },
         }}
       >
-        <Box sx={{ background: "black", opacity: "0.8", padding: "5px" }}>
-          <Typography variant={"h5"} color="white" align="center" pt={8}>
+        <Container
+          maxWidth="xl"
+          sx={{
+            background: "black",
+            opacity: "0.8",
+            padding: { xs: 0, sm: 2,  },
+          }}
+        >
+          <Typography variant={"h6"} color="white" align="center" pt={8}>
             FlowFocus revolutionizes task management, offering an intuitive
             platform for seamless collaboration, dynamic prioritization, and
             enhanced productivity. Elevate your workflow with streamlined
@@ -36,7 +43,7 @@ const Banner = () => {
               Let's Explore
             </Button>
           </Typography>
-        </Box>
+        </Container>
       </Box>
     </Box>
   );

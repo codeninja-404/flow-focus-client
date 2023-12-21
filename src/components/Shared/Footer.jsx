@@ -1,5 +1,5 @@
-import { Box, Stack, Typography, styled } from "@mui/material";
-
+import { Box, Container, Stack, Typography, styled } from "@mui/material";
+import logo from "../../assets/Logo.png";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material/";
 const SocialBox = styled(Box)({
   display: "flex",
@@ -8,21 +8,20 @@ const SocialBox = styled(Box)({
 });
 const Footer = () => {
     return (
-        <Box sx={{ background: "black", height: "300px" }}>
-        <Stack direction={{ xs: "row", md: "row" }} p={7}>
-          <Box flex={1}>
+        <Box sx={{ background: "black", height: "300px"}}>
+       <Container maxWidth="xl">
+       <Stack direction={{ xs: "coloumn", md: "row" }} p={7} >
+          <Box sx={{display:"flex", flexDirection:"column",   }} flex={1}>
+          <Box
+              component="img"
+              sx={{ height: 35 ,margin:"0 auto" }}
+              alt="Logo"
+              src={logo}
+            ></Box>
             <Typography color={"white"} align={"center"}>
-              Contact Us
+              All Rights Reserved By Saidul Arefin
             </Typography>
-            <Typography color={"white"} align={"center"}>
-              of squamate reptiles, with over 6,000 species,
-            </Typography>
-            <Typography color={"white"} align={"center"}>
-              continents except Antarcti
-            </Typography>
-            <Typography color={"white"} align={"center"}>
-              ranging across
-            </Typography>
+            
           </Box>
           <Box flex={1}>
             <Typography color={"white"} align={"center"}>
@@ -35,31 +34,19 @@ const Footer = () => {
               Data Safety
             </Typography>
           </Box>
+          
           <Box flex={1}>
-            <Typography color={"white"} align={"center"}>
-              Categories
-            </Typography>
-            <Typography color={"white"} variant={"body2"} align={"center"}>
-              Kids
-            </Typography>
-            <Typography color={"white"} variant={"body2"} align={"center"}>
-              Women
-            </Typography>
-            <Typography color={"white"} variant={"body2"} align={"center"}>
-              Men
-            </Typography>
-          </Box>
-          <Box>
             <Typography color={"white"} align={"center"}>
               Follow Us
             </Typography>
-            <SocialBox>
+            <SocialBox pt={4} sx={{display:"flex", justifyContent:'space-evenly' ,  }}>
               <Facebook />
               <Instagram />
               <Twitter />
             </SocialBox>
           </Box>
         </Stack>
+       </Container>
       </Box>
     );
 };
