@@ -12,9 +12,23 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { NavLink } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = [
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "About us",
+    path: "/aboutus",
+  },
+  {
+    name: "Sign in",
+    path: "/signin",
+  },
+];
+const settings = ["Dashboard", "Logout"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -34,7 +48,6 @@ function NavBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
 
   return (
     <AppBar
@@ -99,8 +112,10 @@ function NavBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem id='dropLink' key={page} onClick={handleCloseNavMenu}>
+                  <NavLink style={{ textDecoration: "none" }} to={`${page.path}`}>
+                    <Typography fontWeight="bold"  textTransform= "uppercase"textAlign="center" color="black">{page.name}</Typography>
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>
@@ -129,15 +144,23 @@ function NavBar() {
               src={logo}
             ></Box>
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            id="navlinks"
+            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+          >
             {pages.map((page) => (
-              <Button
+              <NavLink
+                style={{ textDecoration: "none" }}
+                to={`${page.path}`}
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
-              </Button>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 0.3, color: "white", display: "block" }}
+                >
+                  {page.name}
+                </Button>
+              </NavLink>
             ))}
           </Box>
 

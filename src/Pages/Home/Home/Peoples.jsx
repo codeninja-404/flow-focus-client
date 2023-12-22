@@ -14,7 +14,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 const Peoples = () => {
-    const userType = ["Students", "Developers", "Teachers" , "Bankers", "Emplooyer", "HR"]
+    const userType = ["Students", "Developers", "Teachers" , "Bankers", "Project Teams", "Entrepreneurs"]
   return (
     <Container maxWidth="xl" sx={{ opacity: "0.8", padding: "2px", margin: "60px auto", }} >
       <Typography pb={2} fontWeight="bold" variant="h4">People Are using</Typography>
