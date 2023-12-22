@@ -1,5 +1,6 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import HeroImage from "../../../assets/hero.jpg";
+import { Link } from "react-router-dom";
 const Banner = () => {
   return (
     <Box
@@ -28,7 +29,7 @@ const Banner = () => {
           sx={{
             background: "black",
             opacity: "0.8",
-            padding: { xs: 0, sm: 2,  },
+            padding: { xs: 0, sm: 2 },
           }}
         >
           <Typography variant={"h6"} color="white" align="center" pt={8}>
@@ -39,9 +40,11 @@ const Banner = () => {
           </Typography>
 
           <Typography variant="body1" align="center" p={5}>
-            <Button variant="contained" color="secondary">
-              Let's Explore
-            </Button>
+            <Link to="/dashboard">
+              <Button variant="contained" color="secondary">
+                Let's Explore
+              </Button>
+            </Link>
           </Typography>
         </Container>
       </Box>

@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const pages = [
   {
@@ -24,15 +25,16 @@ const pages = [
     path: "/aboutus",
   },
   {
-    name: "Sign in",
-    path: "/signin",
+    name: "Dashboard",
+    path: "/dashboard",
   },
 ];
-const settings = ["Dashboard", "Logout"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { user, logOutUser } = useAuth();
+  console.log(user);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -112,9 +114,19 @@ function NavBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem id='dropLink' key={page} onClick={handleCloseNavMenu}>
-                  <NavLink style={{ textDecoration: "none" }} to={`${page.path}`}>
-                    <Typography fontWeight="bold"  textTransform= "uppercase"textAlign="center" color="black">{page.name}</Typography>
+                <MenuItem id="dropLink" key={page} onClick={handleCloseNavMenu}>
+                  <NavLink
+                    style={{ textDecoration: "none" }}
+                    to={`${page.path}`}
+                  >
+                    <Typography
+                      fontWeight="bold"
+                      textTransform="uppercase"
+                      textAlign="center"
+                      color="black"
+                    >
+                      {page.name}
+                    </Typography>
                   </NavLink>
                 </MenuItem>
               ))}
@@ -164,35 +176,43 @@ function NavBar() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+          {user ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src={user?.photoURL} />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Button
+                    onClick={() => {
+                      logOutUser();
+                    }}
+                  >
+                    Sign Out
+                  </Button>
                 </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+              </Menu>
+            </Box>
+          ) : (
+            <></>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
